@@ -1,3 +1,5 @@
 # frozen_string_literal: false
 
-require './lib/hashmap.rb'
+require './lib/hashmap'
+
+test = HashMap.new
