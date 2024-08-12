@@ -1,5 +1,5 @@
 # frozen_string_literal: false
 
-require './lib/hashmap'
+require './lib/hash_map'
 
-test = HashMap.new
+p test = HashMap.new
