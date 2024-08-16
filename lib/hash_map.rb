@@ -5,10 +5,7 @@ require './lib/linked_list'
 # The implementaion of a hash map by Profiremu23
 class HashMap
   def initialize
-    @buckets = Array.new(16)
-    @buckets.each_index do |ind|
-      @buckets[ind] = ind
-    end
+    @buckets = Array.new(16) { LinkedList.new }
     @capacity = @buckets.size
     @load_factor = 0.85
   end

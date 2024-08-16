@@ -16,6 +16,7 @@ class LinkedList
   def apprend(value)
     @list << Node.new(value)
     @list[-2].next_node = @list[-1][:value] if @list.size > 1
+    @head = @list[0][:value]
     @tail = @list[-1][:value]
   end
 
@@ -24,6 +25,7 @@ class LinkedList
     @list.insert(0, Node.new(value))
     @list[0].next_node = @list[1][:value] if @list.size > 1
     @head = @list[0][:value]
+    @tail = @list[-1][:value]
   end
 
   def insert_at(index, value)
