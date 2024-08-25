@@ -5,9 +5,6 @@ require './lib/linked_list'
 # The implementaion of a hash map by Profiremu23
 class HashMap
   def initialize
-    @buckets = Array.new(16) { LinkedList.new }
-    @capacity = @buckets.size
-    @load_factor = 0.85
   end
 
   def hash(key)
@@ -20,9 +17,6 @@ class HashMap
   end
 
   def set(key, value)
-    a = hash(value)
-    @buckets[a % 16] = key
-    @buckets
   end
 
   def get(key) end
