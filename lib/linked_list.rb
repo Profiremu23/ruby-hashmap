@@ -1,11 +1,12 @@
 # frozen_string_literal: false
 
-
 ## The building block for any linked list
 Node = Struct.new(:key, :value, :next_node)
 
 ## To represent the missing linked list class for Ruby
 class LinkedList
+  attr_reader :head # This will return the head node's value
+
   # Some constant variables for the linked list to work
   def initialize
     @head = nil
@@ -42,6 +43,7 @@ class LinkedList
     (index - 1).times do
       current = current.next_node
     end
+    p current.next_node
     current.next_node = current.next_node.next_node
   end
 
@@ -58,15 +60,10 @@ class LinkedList
     index
   end
 
-  # This will return the head node's value
-  def head
-    @head
-  end
-
   # This will return the tail node's value
   def tail
     current = @head
-    (@head.size - 2).times do
+    (self.size - 1).times do
       current = current.next_node
     end
     current
@@ -84,18 +81,20 @@ class LinkedList
   # This will delete the last element from the linked list
   def pop
     current = @head
-    (@head.size - 2).times do
+    (self.size - 2).times do
       current = current.next_node
     end
+    p current.next_node
     current.next_node = nil
   end
 
   # This will return a boolean value (true/false) depending on the given key's presentence in the linked list
   def contains?(key)
     current = @head
-    (@head.size - 1).times do
-      current = current.next_node
+    self.size.times do
       return true if current.key == key
+
+      current = current.next_node
     end
     false
   end
@@ -104,10 +103,11 @@ class LinkedList
   def find(key)
     current = @head
     index = 0
-    @head.size.times do
+    self.size.times do
+      return index if current.key == key
+
       current = current.next_node
       index += 1
-      return index if current.key == key
     end
     nil
   end
@@ -116,7 +116,7 @@ class LinkedList
   def to_s
     current = @head
     display = ''
-    @head.size.times do
+    self.size.times do
       display << "( #{current.key} ) -> "
       current = current.next_node
     end
