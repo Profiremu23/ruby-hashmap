@@ -40,11 +40,19 @@ class LinkedList
   # This will remove a Node at a given index within the linked list
   def remove_at(index)
     current = @head
-    (index - 1).times do
+    index.times do
       current = current.next_node
     end
-    p current.next_node
-    current.next_node = current.next_node.next_node
+
+    if current.next_node.nil?
+      self.pop
+    elsif index.zero?
+      @head = Node.new(current.next_node.key, current.next_node.value, current.next_node.next_node)
+    else
+      current.key = current.next_node.key
+      current.value = current.next_node.key
+      current.next_node = current.next_node.next_node
+    end
   end
 
   # This will get the accurate size of the current linked list
@@ -79,9 +87,14 @@ class LinkedList
   # This will delete the last element from the linked list
   def pop
     current = @head
-    current = current.next_node until current.next_node.next_node.nil?
-    p current.next_node
-    current.next_node = nil
+    current = current.next_node until current.next_node.nil? || current.next_node.next_node.nil?
+    p current
+
+    if self.size == 1
+      @head = nil
+    else
+      current.next_node = nil
+    end
   end
 
   # This will return a boolean value (true/false) depending on the given key's presentence in the linked list
