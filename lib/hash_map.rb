@@ -64,7 +64,7 @@ class HashMap
       stored_keys += @bucket_list[index].size unless @bucket_list[index].nil?
       index += 1
     end
-    stored_keys
+    p stored_keys
   end
 
   def clear
@@ -76,9 +76,48 @@ class HashMap
     nil
   end
 
-  def keys; end
+  def keys
+    index = 0
+    stored_keys = []
+    @bucket_list.length.times do
+      array_index = 0
+      @bucket_list[index].size.times do
+        stored_keys << @bucket_list[index].at(array_index).key
+        array_index += 1
+      end
+      index += 1
+    end
+    p stored_keys
+  end
 
-  def values; end
+  def values
+    index = 0
+    stored_values = []
+    @bucket_list.length.times do
+      array_index = 0
+      @bucket_list[index].size.times do
+        stored_values << @bucket_list[index].at(array_index).value
+        array_index += 1
+      end
+      index += 1
+    end
+    p stored_values
+  end
 
-  def entries; end
+  def entries
+    index = 0
+    stored_entries = []
+    @bucket_list.length.times do
+      array_index = 0
+      @bucket_list[index].size.times do
+        pair = []
+        pair << @bucket_list[index].at(array_index).key
+        pair << @bucket_list[index].at(array_index).value
+        stored_entries << pair
+        array_index += 1
+      end
+      index += 1
+    end
+    p stored_entries
+  end
 end
