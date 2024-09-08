@@ -12,6 +12,20 @@ class HashMap
     @load_factor = 0.75
   end
 
+  def bucket_expansion
+    active_lists = 0
+    index = 0
+    @bucket_list.length.times do
+      active_lists += @bucket_list[index].size
+      index += 1
+    end
+
+    if (active_lists / @capacity.to_f) > @load_factor
+      @bucket_list.concat(Array.new(@bucket_list.size) { LinkedList.new })
+      @capacity = @bucket_list.size
+    end
+  end
+
   def hash(key)
     hash_code = 0
     prime_number = 37
